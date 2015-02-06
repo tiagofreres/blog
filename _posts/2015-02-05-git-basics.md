@@ -5,6 +5,12 @@ date:   2015-02-05 21:01:15
 categories: git basics
 ---
 
+#Creating and managing your Git project (locally and remotely)
+
+##How to start a Git project?
+##How to create a local branch that mirrors a remote branch?
+##How to create and push content to a remote branch?
+
 **`git remote add -f [-t <branch>] [-m <master>] <name> <remote-repository-url>`**
 
 Creates a remote repository named as `<name>` for the `<remote-repository-url>`.
@@ -66,3 +72,8 @@ Incorporates changes from the named commits (since the time their histories dive
 **`git pull -r <remote-repository> <branch>`**
 
 Replace local branch with `<remote-repository> <branch>` files.
+
+
+
+
+
