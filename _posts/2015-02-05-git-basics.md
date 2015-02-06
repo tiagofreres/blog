@@ -30,9 +30,9 @@ Shows all remote branches in the project.
 
 Shows all local branches in the project.
 
-**`git checkout -b <local-branch> <remote-branch>`**
+**`git checkout -b <local-branch> --track <remote-repository>/<remote-branch>`**
 
-Is a shortcut to `git branch <local-branch> <remote-branch>` followed by `git checkout <local-branch>`
+Is a shortcut to `git branch --set-upstream-to=<remote-repository>/<remote-branch> <local-branch>` followed by `git checkout <local-branch>`
 
 
 **`git branch -d <local-branch>`**
