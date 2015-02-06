@@ -8,8 +8,7 @@ categories: git basics
 #Creating and managing your Git project (locally and remotely)
 
 ##How to start a Git project?
-##How to create a local branch that mirrors a remote branch?
-##How to create and push content to a remote branch?
+##How to create a local branch that tracks a remote branch?
 
 **`git remote add -f [-t <branch>] [-m <master>] <name> <remote-repository-url>`**
 
