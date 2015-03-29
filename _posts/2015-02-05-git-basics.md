@@ -103,7 +103,7 @@ To push new content into remote repository you will need to:
 
 1. [Link your project to a remote repository](#link-rr)
 2. [Make a commit](#start-commit)
-3. Push your commits to remote repository
+3. Push your commits to remote repository using `git push`
 
 
 
