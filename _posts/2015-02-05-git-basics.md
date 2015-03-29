@@ -13,13 +13,18 @@ More details about this subject can be found at [Git Reference Documentation](ht
 
 Check out [how to install Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git), at Git Documentation page.
 
-##How to start a Git project?
+![Git project sample]({{site.baseurl}}images/project-sample.png)
 
-Basicaly, to start versioning your project with Git, you just need to:
+<a name="start-commit"></a>
+##How to start a Git project and make your first commit?
 
-1. Go to your project's folder (on console) and type `git init`. 
-2. Add your files to the index (The "index" holds a snapshot of the content of the working tree, and it is this snapshot that is taken as the contents of the next commit.) using `git add <files>` or `git add --all` (to add all your files).
-3. Stores the current contents of the index in a new commit along with a log message from the user describing the changes with `git commit -m "<message>"`.
+Basicaly, to start versioning your project with Git, go to your project root and type:
+
+1. `git init` to create all Git structure into your project. 
+2. `git add <files>`, to add specific files, or `git add --all`, to add all of your files to the `index*.
+3. And `git commit -m "<message>"` to stores the current content of the index in a new commit along with a log message. Your `objects` and `refs/heads/<current-branch>` folders are updated.
+
+ **The "index" holds a snapshot of the content of the working tree, and it is this snapshot that is taken as the contents of the next commit.*
 
 ###Example:
 
@@ -38,13 +43,72 @@ git add readme.md
 git commit -m "My first commit!"
 ```
 
-That is it! You have your first commit in your Git project.
+That is it! You have your first commit in your Git project. To further changes, adding or updating files, you just need to repeat the **steps 2** and **3**. These steps will commit your changes locally, to push it to a remote repository look at **@**.
 
-To further changes, adding or updating files, you just need to repeat the **steps 2** and **3**. These steps will commit your changes locally, to know how to make it remotely take a look at **@**.
 
-##How to clone, or download, a remote repository in a local folder?
+##How to create a remote repository?
 
-There are two approaches that can be used: with `git clone` or `git init`. `git clone`, as the name suggest, is used to clone a remote repository in a local folder. `git init` can reach the same goal with more control. Both cases will be discussed below.
+In this example, [Github](https://github.com/) will be used to host remotely this project.
+
+First of all, register your self in the site and then create a new repository, by clicking on the **plus icon** and then **New repository**.
+
+![New repository]({{site.baseurl}}images/new-repository.png)
+
+You can give the name you want to your repository, in this article we gave the name **hello**, and then click at **Create repository**.
+
+![Repository name]({{site.baseurl}}images/repository-name.png)
+
+That's it! You have your first remote repository.
+
+<a name="link-rr"></a>
+##How to link your project to a remote repository?
+
+
+First of all, go to GitHub page and copy your project URL (in the SSH clone URL, click at the button that says **Copy to clipboard**), that is your `<remote-repository-url>` for further use.
+
+![Copy your project URL to clipboard]({{site.baseurl}}images/copy-to-clipboard.png)
+
+
+Like previous example, at your project root, type:
+
+1. `git remote add <name> <remote-repository-url>`, to add a reference name to your remote repository.
+2. `git fetch --all`, to update all remote-tracking branches (updates made on remote repository).
+3. And then, `git pull <remote-repository> <remote-branch>`, to merge the remote master branch into the current master branch.
+
+**Tip:** if you have problem pushing/pulling content to/from your remote repository, probably you need to add a [SSH Key](https://github.com/settings/ssh) at your GitHub settings.
+
+###Example:
+
+```bash
+# add to your project a remote repository named as origin 
+git remote add origin git@github.com:git/git.git
+# after running this command, you will have the following new parameters in your git config.
+# remote.origin.url=git@github.com:git/git.git
+# remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+# branch.master.remote=<name>
+# branch.master.merge=refs/heads/master
+#
+# update tracks
+git fetch --all
+# merge content from master branch, of remote repository origin, 
+# to the local master branch.
+git pull origin master
+```
+
+
+##How to commit and push content into remote repository
+
+
+To push new content into remote repository you will need to:
+
+1. [Link your project to a remote repository](#link-rr)
+2. [Make a commit](#start-commit)
+3. Push your commits to remote repository
+
+
+
+
+There are two approaches that can be used to clone a remote repository: `git clone` or `git init`. `git clone`, as the name suggest, is used to clone a remote repository in a local folder, `git init` can reach the same goal with more steps but, conveniently, with more control. Both cases will be discussed below.
 
 `git clone <repository-url> <local-folder-name>`
 
@@ -53,11 +117,37 @@ The above code will clones `<repository-url>` into `<local-folder-name>`, create
 Using `git init` to clone a remote repository is a little bit tricky.
 
 1. Create an empty folder.
-2. Get inside the folder.
+2. Get inside the created new folder.
 3. Run `git init`.
 4. Run `git remote add <name> <remote-repository-url>` to add a reference name to a remote repository.
-5. Run `git fetch -all` to update all remote-tracking branches.
+5. Run `git fetch --all` to update all remote-tracking branches.
 6. Run `git pull <remote-repository> <remote-branch>` to merge the remote master branch into the current master branch.
+
+###Example:
+
+```bash
+# create an empty folder (project folder)
+mkdir hello
+# get inside project folder
+cd hello
+# enable Git on your project
+git init
+# references git@github.com:git/git.git remote repository to origin 
+# (origin is default e.g. by git clone, but feel free to name it as you like)
+git remote add origin git@github.com:git/git.git
+# update tracks (e.g. when you add a new branch in the remote repository)
+git fetch --all
+# merge content from master branch, of remote repository origin, 
+# to the local master branch.
+git pull origin master
+```
+
+##How to reflect local changes on a remote repository?
+
+First of all, check if your Git project have a remote repository set, running `git config --list` and check if there are values set for `remote.<remote-repository-name>.url` and `branch.master.remote`. If there is not, run `git remote add <name> <remote-repository-url>` to add one.
+
+all steps from local management + git push
+git push
 
 ##How to create a local branch that tracks a remote branch?
 
@@ -124,8 +214,5 @@ Incorporates changes from the named commits (since the time their histories dive
 Replace local branch with `<remote-repository> <branch>` files.
 
 ##What is Git Submodule?
-
-
-
 
 
