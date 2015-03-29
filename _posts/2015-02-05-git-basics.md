@@ -85,9 +85,8 @@ git remote add origin git@github.com:git/git.git
 # after running this command, you will have the following new parameters in your git config.
 # remote.origin.url=git@github.com:git/git.git
 # remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
-# branch.master.remote=<name>
-# branch.master.merge=refs/heads/master
-#
+# branch.master.remote=origin
+
 # update tracks
 git fetch --all
 # merge content from master branch, of remote repository origin, 
@@ -103,10 +102,25 @@ To push new content into remote repository you will need to:
 
 1. [Link your project to a remote repository](#link-rr)
 2. [Make a commit](#start-commit)
-3. Push your commits to remote repository using `git push`
+3. Push your commits into remote repository using `git push`
 
+**Warning:** To make sure your git push is going to work, check (using `git config`) if the branch that you're using have set a remote repository (on `branch.<current-branch>.remote=<remote-repository-name>`).
 
+###Example:
 
+```bash
+# Link your project to a remote repository
+git remote add origin git@github.com:git/git.git
+git fetch --all
+git pull origin master
+
+# Make a commit
+git add --all
+git commit -m "Adding and updating files"
+
+# Push commit
+git push
+```
 
 There are two approaches that can be used to clone a remote repository: `git clone` or `git init`. `git clone`, as the name suggest, is used to clone a remote repository in a local folder, `git init` can reach the same goal with more steps but, conveniently, with more control. Both cases will be discussed below.
 
