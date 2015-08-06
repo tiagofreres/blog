@@ -66,3 +66,7 @@ Incorporates changes from the named commits (since the time their histories dive
 **`git pull -r <remote-repository> <branch>`**
 
 Replace local branch with `<remote-repository> <branch>` files.
+
+**`git checkout -b <local-branch> <remote-repository>/<local-branch-origin>
+
+**`git push origin -u <local-branch> 
