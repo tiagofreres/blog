@@ -70,3 +70,7 @@ Replace local branch with `<remote-repository> <branch>` files.
 **`git checkout -b <local-branch> <remote-repository>/<local-branch-origin>`**
 
 **`git push origin -u <local-branch>`**
+
+**`ssh-add ~/.ssh/id_rsa &>/dev/null`**
+
+Remember your credentials when pulling from or pushing to repository.
