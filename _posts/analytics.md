@@ -10,8 +10,11 @@
 
 `data-analytics-<parameter>`
 
+**Used to delimit analytics scope on HTML module structure**
+`data-analytics-<parameter>`
+
 ```HTML
-<div data-analytics-param-panel-type="module-1">
+<div data-analytics-scope data-analytics-param-panel-type="module-1">
   <div data-analytics-selector-cta="1">
     <div>
       <div>
