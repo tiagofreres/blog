@@ -11,7 +11,8 @@
 `data-analytics-<parameter>`
 
 **Used to delimit analytics scope on HTML module structure**
-`data-analytics-<parameter>`
+
+`data-analytics-scope`
 
 ```HTML
 <div data-analytics-scope data-analytics-param-panel-type="module-1">
