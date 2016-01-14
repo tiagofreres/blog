@@ -16,10 +16,10 @@
 
 ```HTML
 <div data-analytics-scope data-analytics-param-panel-type="module-1">
-  <div data-analytics-selector-cta="1">
+  <div data-analytics-selector-cta>
     <div>
       <div>
-        <div data-analytics-cta="1">Analytics CTA 1</div>
+        <div data-analytics-cta>Analytics CTA 1</div>
       </div>
     </div>
     <div>
@@ -29,10 +29,10 @@
       <a class="cta">CTA EXAMPLE 1</a>
     </div>
   </div>
-  <div data-analytics-selector-cta="2">
+  <div data-analytics-selector-cta>
     <div>
       <div>
-        <div data-analytics-cta="2">Analytics CTA 2</div>
+        <div data-analytics-cta>Analytics CTA 2</div>
       </div>
     </div>
     <div>
