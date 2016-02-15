@@ -8,7 +8,7 @@
 
 **`reducer`**` :: ...* -> state, action -> state`
 
-**`createStore`**` :: reducer, initialState -> store`
+**`createStore`**` :: reducer, initialState, enhancer -> store`
 
 **`listener`**`(IO) :: _ -> _`
 
