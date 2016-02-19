@@ -12,6 +12,7 @@ Every action/event on site can fire an analytics, in order to specify which ones
 
 Analytics handler should be able to identify which TagID belongs to the emmited event.
 
+- Using [`EventTarget`](https://developer.mozilla.org/en/docs/Web/API/EventTarget), received by analytics handler, identify which TagID it belongs.
 
 ##How to discover variable properties and dynamic values
 
