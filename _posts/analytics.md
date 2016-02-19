@@ -1,3 +1,26 @@
+#Analytics
+
+##How to setup triggers
+
+Every action/event on site can fire an analytics, in order to specify which ones should trigger it they will need to be set.
+
+- Adding analytics handler into CTA's event listeners
+- Adding analytics handler on `document.body` for specific event types
+- Triggering specific event types over app logic
+
+##How to identify TagID and its properties
+
+Analytics handler should be able to identify which TagID belongs to the emmited event.
+
+
+##How to discover variable properties and dynamic values
+
+Each TagID have different properties and dynamic values that change depending on content, that way the code should be able to identify those properties and discover those dynamic values.
+
+##How to apply logic on analytics properties before dispatching it
+
+Sometimes it is necessary to change properties values before sending it to analytics API, like filling up an empty field or adding globals properties.
+
 **Used when need to perform a search and the value can change by content**
 
 `data-analytics-selector-<parameter>`
