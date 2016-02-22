@@ -4,23 +4,27 @@
 
 Every action/event on site can fire an analytics, in order to specify which ones should trigger it they will need to be set.
 
-- Adding analytics handler into CTA's event listeners
-- Adding analytics handler on `document.body` for specific event types
-- Triggering specific event types over app logic
+- Adding analytics handler into CTA's event listeners.
+- Adding analytics handler on `document.body` for specific event types.
+- Triggering specific event types over app logic.
 
 ##How to identify TagID and its properties
 
 Analytics handler should be able to identify which TagID belongs to the emmited event.
 
-- Using [`EventTarget`](https://developer.mozilla.org/en/docs/Web/API/EventTarget), received by analytics handler, identify which TagID it belongs.
+- Receiving an [`EventTarget`](https://developer.mozilla.org/en/docs/Web/API/EventTarget) that represents a CTA event, use it to identify which TagID it belongs and which properties need to be filled.
 
 ##How to discover variable properties and dynamic values
 
 Each TagID have different properties and dynamic values that change depending on content, that way the code should be able to identify those properties and discover those dynamic values.
 
+- Receiving an [`EventTarget`](https://developer.mozilla.org/en/docs/Web/API/EventTarget) that represents a CTA event and a  property list, use it to discover those properties values.
+
 ##How to apply logic on analytics properties before dispatching it
 
 Sometimes it is necessary to change properties values before sending it to analytics API, like filling up an empty field or adding globals properties.
+
+- After filling all properties values, sometimes it is necessary to modify, add or remove some properties. So this would be that step.
 
 **Used when need to perform a search and the value can change by content**
 
