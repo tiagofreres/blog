@@ -8,6 +8,16 @@ Every action/event on site can fire an analytics, in order to specify which ones
 - Adding analytics handler on `document.body` for specific event types.
 - Triggering specific event types over app logic.
 
+```javascript
+// Adding analytics handler into CTA's event listeners.
+$('.analytics-trigger').on(ANALYTICS_EVENT.MOUSEDOWN, analyticsHandler);
+
+// Adding analytics handler on document.body for specific event types.
+$(document).on(Object.keys(ANALYTICS_EVENT).map(function(event){ 
+  return ANALYTICS_EVENT[event];
+}).join(' '), analyticsHandler);
+```
+
 ##How to identify TagID and its properties
 
 Analytics handler should be able to identify which TagID belongs to the emmited event.
