@@ -10,12 +10,17 @@ Every action/event on site can fire an analytics, in order to specify which ones
 
 ```javascript
 // Adding analytics handler into CTA's event listeners.
-$('.analytics-trigger').on(ANALYTICS_EVENT.MOUSEDOWN, analyticsHandler);
+$('.analytics-trigger').on(EVENT.MOUSEDOWN, analyticsHandler);
+
 
 // Adding analytics handler on document.body for specific event types.
 $(document).on(Object.keys(ANALYTICS_EVENT).map(function(event){ 
   return ANALYTICS_EVENT[event];
 }).join(' '), analyticsHandler);
+
+
+// Triggering specific event types over app logic.
+$('.play-button').trigger(EVENT.VIDEO_START, { 'video_name': videoTitle });
 ```
 
 ##How to identify TagID and its properties
@@ -23,6 +28,12 @@ $(document).on(Object.keys(ANALYTICS_EVENT).map(function(event){
 Analytics handler should be able to identify which TagID belongs to the emmited event.
 
 - Receiving an [`EventTarget`](https://developer.mozilla.org/en/docs/Web/API/EventTarget) that represents a CTA event, use it to identify which TagID it belongs and which properties need to be filled.
+
+```javascript
+
+
+
+```
 
 ##How to discover variable properties and dynamic values
 
