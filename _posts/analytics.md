@@ -93,6 +93,17 @@ Each TagID have different properties and dynamic values that change depending on
 
 - Receiving an [`EventTarget`](https://developer.mozilla.org/en/docs/Web/API/EventTarget) that represents a CTA event and a  property list, use it to discover those properties values.
 
+```javascript
+// Discover dynamic properties values
+function ($eventTarget) {
+  return {
+    module: $eventTarget.closest('[data-module]').data('module'),
+    type: $eventTarget.closest('[data-type]').data('type')
+  };
+}
+```
+
+
 ##How to apply logic on analytics properties before dispatching it
 
 Sometimes it is necessary to change properties values before sending it to analytics API, like filling up an empty field or adding globals properties.
