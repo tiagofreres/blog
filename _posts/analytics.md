@@ -27,12 +27,64 @@ $('.play-button').trigger(EVENT.VIDEO_START, { 'video_name': videoTitle });
 
 Analytics handler should be able to identify which TagID belongs to the emmited event.
 
-- Receiving an [`EventTarget`](https://developer.mozilla.org/en/docs/Web/API/EventTarget) that represents a CTA event, use it to identify which TagID it belongs and which properties need to be filled.
+- Receiving an [`EventTarget`](https://developer.mozilla.org/en/docs/Web/API/EventTarget) that represents a CTA event.
+- Setting up EventTarget Searchable Parameters.
+- Setting TagIDs Rules based on Searchable Parameters.
+- Creating logic to match Rules TagIDs Rules with Searchable Parameters.
 
 ```javascript
+// Setting up EventTarget Searchable Parameters
+function discoverMissingOptions(options) {
+  if (options.$el) {
+    return $.extend({
+      template: discover.getTemplate(),
+      module: discover.getModuleName(options.$el),
+      submodule: discover.getSubModuleName(options.$el),
+      props: {}
+    }, options);
+  }
+  return options;
+}
 
+// Setting TagIDs Rules based on Searchable Parameters
+forCtas = [
+  {
+    tagId: 'PURE_PROCESS_DROPDOWN_BUTTON_CLICK',
+    propNames: ['panel_type', 'panel_title', 'state', 'cta'],
+    atModules: arrayUtils.isIn(['pure-process']),
+    atEvent: arrayUtils.isIn([EVENT.SELECTED_ITEM])
+  },
+  {
+    tagId: 'PURE_PROCESS_DEALER_OVERLAY_LOAD',
+    propNames: ['panel_type', 'panel_title'],
+    atModules: arrayUtils.isIn(['pure-process-overlay']),
+    atEvent: arrayUtils.isIn([EVENT.LOAD])
+  },
+  {
+    tagId: 'PURE_PROCESS_DEALER_OVERLAY_SET_DEALER_CLICK',
+    propNames: ['panel_type', 'panel_title', 'state', 'dealer_code'],
+    atModules: arrayUtils.isIn(['pure-process-overlay']),
+    atSubmodules: arrayUtils.isIn(['pure-process-dealers']),
+    atEvent: arrayUtils.isIn([EVENT.MOUSEDOWN])
+  },
+  ...
+];
 
-
+// Creating logic to match Rules TagIDs Rules with Searchable Parameters
+function defaultFindLogic(options) {
+  return function(linkRule) {
+    return (checkRule(linkRule.atTemplates, [options.template]) ||
+      linkRule.atPath
+        ? checkRule(linkRule.atPath, [PATHNAME, filterCta])
+        : false) &&
+      checkRule(linkRule.atModules, [options.module]) &&
+      checkRule(linkRule.atSubmodules, [options.submodule]) &&
+      checkRule(linkRule.atCtas, [options.$el && options.$el.attr('href'), filterCta]) &&
+      checkRule(linkRule.atClass,
+        [arrayUtils.toArray(options.$el && options.$el.get(0).classList || [])]) &&
+      checkRule(linkRule.atEvent, [options.eventType] || []);
+  };
+}
 ```
 
 ##How to discover variable properties and dynamic values
