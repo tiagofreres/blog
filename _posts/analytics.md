@@ -110,6 +110,18 @@ Sometimes it is necessary to change properties values before sending it to analy
 
 - After filling all properties values, sometimes it is necessary to modify, add or remove some properties. So this would be that step.
 
+**Set `<parameter>` with `<global_js_variable>` value**
+
+`data-analytics-global-<parameter>="<global_js_variable>"`
+
+**Set `<parameter>` with `<css_selector>` element text/value**
+
+`data-analytics-css-<parameter>="<css_selector>"`
+
+**Set `<parameter>` with `<scss_selector>` element text/value, `<scss_selector>` is limited on module `data-analytics-scope`**
+
+`data-analytics-scss-<parameter>="<scss_selector>"`
+
 **Used when need to perform a search and the value can change by content**
 
 `data-analytics-selector-<parameter>`
