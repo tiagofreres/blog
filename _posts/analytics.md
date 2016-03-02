@@ -110,33 +110,47 @@ Sometimes it is necessary to change properties values before sending it to analy
 
 - After filling all properties values, sometimes it is necessary to modify, add or remove some properties. So this would be that step.
 
-**Set `<parameter>` with `<global_js_variable>` value**
+Set `<parameter>` with `<global_js_variable>` value:
 
-`data-analytics-global-<parameter>="<global_js_variable>"`
+```
+data-analytics-global-<parameter>="<global_js_variable>"
+```
 
-**Set `<parameter>` with `<css_selector>` element text/value**
+Set `<parameter>` with `<css_selector>` element text/value:
 
-`data-analytics-css-<parameter>="<css_selector>"`
+```
+data-analytics-css-<parameter>="<css_selector>"
+```
 
-**Set `<parameter>` with `<scss_selector>` element text/value, `<scss_selector>` is limited on module `data-analytics-scope`**
+Set `<parameter>` with `<scss_selector>` element text/value, `<scss_selector>` is limited on module `data-analytics-scope`:
 
-`data-analytics-scss-<parameter>="<scss_selector>"`
+```
+data-analytics-scss-<parameter>="<scss_selector>"
+```
 
-**Used when need to perform a search and the value can change by content**
+Used when need to perform a search and the value can change by content:
 
-`data-analytics-selector-<parameter>`
+```
+data-analytics-selector-<parameter>
+```
 
-**Used when no search need to be done and the value is be always the same and do not change by content**
+Used when no search need to be done and the value is be always the same and do not change by content:
 
-`data-analytics-param-<parameter>`
+```
+data-analytics-param-<parameter>
+```
 
-**Used to connect with `data-analytics-selector-<parameter>`**
+Used to connect with `data-analytics-selector-<parameter>`:
 
-`data-analytics-<parameter>`
+```
+data-analytics-<parameter>
+```
 
-**Used to delimit analytics scope on HTML module structure**
+Used to delimit analytics scope on HTML module structure:
 
-`data-analytics-scope`
+```
+data-analytics-scope
+```
 
 ```HTML
 <div data-analytics-scope data-analytics-param-panel-type="module-1">
