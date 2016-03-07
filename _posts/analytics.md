@@ -1,3 +1,115 @@
+
+# Applying Analytics on SCION
+
+## #1 Create a new rule
+
+Rules are stored at `analytics-rules.js` with the following structure:
+
+```javascript
+var rule = {
+  tagId: 'FIND_DEALER_BUTTON_CLICK',
+  propNames: ['zip_code', 'process_type', 'dealer_code', 'cta'],
+  atModules: arrayUtils.isIn(['dealers']),
+  atSubmodules: arrayUtils.isIn(['dealer-entry']),
+  atEvent: arrayUtils.isIn([EVENT.MOUSEDOWN]),
+  atTemplates: arrayUtils.isNotIn([]),
+  atClass: arrayUtils.allNotIn([]),
+  atCtas: arrayUtils.isNotIn([])
+};
+```
+
+If there is a new TagID it should be added into `forCtas` array on this file.
+
+## #2 Enable CTA tracking and matching properties
+
+First, when interacting with CTA, check if it's being received by `analyticsHandler` (it should print on console log an object carrying at least an `$e` property). If it's not printed you should emit it with `trigger` or `dispatch`.
+
+```javascript
+//second parameter is used to insert static properties
+$('.cta').trigger(EVENT.MOUSEDOWN, {'transmition_type', 'none'});
+```
+
+
+
+## #3 Add analytics markups
+
+- `discover.js`
+
+Set `<parameter>` with `<global_js_variable>` value:
+
+```
+data-analytics-global-<parameter>="<global_js_variable>"
+```
+
+Set `<parameter>` with `<css_selector>` element text/value:
+
+```
+data-analytics-css-<parameter>="<css_selector>"
+```
+
+Set `<parameter>` with `<scss_selector>` element text/value, `<scss_selector>` is limited on module `data-analytics-scope`:
+
+```
+data-analytics-scss-<parameter>="<scss_selector>"
+```
+
+Used when need to perform a search and the value can change by content:
+
+```
+data-analytics-selector-<parameter>
+```
+
+Used when no search need to be done and the value is be always the same and do not change by content:
+
+```
+data-analytics-param-<parameter>
+```
+
+Used to connect with `data-analytics-selector-<parameter>`:
+
+```
+data-analytics-<parameter>
+```
+
+Used to delimit analytics scope on HTML module structure:
+
+```
+data-analytics-scope
+```
+
+```HTML
+<div data-analytics-scope data-analytics-param-panel-type="module-1">
+  <div data-analytics-selector-cta>
+    <div>
+      <div>
+        <div data-analytics-cta>Analytics CTA 1</div>
+      </div>
+    </div>
+    <div>
+      <p>Something</p>
+    </div>
+    <div>
+      <a class="cta">CTA EXAMPLE 1</a>
+    </div>
+  </div>
+  <div data-analytics-selector-cta>
+    <div>
+      <div>
+        <div data-analytics-cta>Analytics CTA 2</div>
+      </div>
+    </div>
+    <div>
+      <p>Something</p>
+    </div>
+    <div>
+      <a class="cta">CTA EXAMPLE 2</a>
+    </div>
+  </div>
+</div>
+```
+
+
+
 #Analytics
 
 ##How to setup triggers
