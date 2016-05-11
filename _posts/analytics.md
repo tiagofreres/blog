@@ -3,7 +3,8 @@
 
 ## #1 Create a new rule
 
-Rules are stored at `analytics-rules.js` with the following structure:
+>>Rules are stored at `analytics-rules.js` with the following structure:
+>Rules are stored at `analytics-rules.js` with the following structure:
 
 ```javascript
 var rule = {
